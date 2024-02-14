@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Implements a custom Python shell
+using cmd module
+"""
 import cmd
 import shlex
 from models.base_model import BaseModel
@@ -12,6 +16,10 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    Implements a Python class that
+    inherits from cmd module
+    """
     class_reference = ["BaseModel", "User", "Place", "State",
                        "City", "Amenity", "Review"]
     prompt = '(hbnb) '

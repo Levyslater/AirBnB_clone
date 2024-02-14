@@ -1,14 +1,17 @@
+"""Contain test cases for the Amenity class"""
 import unittest
 from models.amenity import Amenity
 from datetime import datetime
 import models
 from models.base_model import BaseModel
 class TestAmenity(unittest.TestCase):
+    """Main class"""
     def test_amenity_inherits_from_base_model(self):
         amenity = Amenity()
         self.assertIsInstance(amenity, BaseModel)
 
     def test_amenity_attributes(self):
+        """Test class attributes"""
         amenity_data = {
             "id": "456",
             "created_at": "2022-02-01T12:00:00.000000",
@@ -23,12 +26,14 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(amenity.name, "Wifi")
 
     def test_save_method_updates_updated_at(self):
+        """Test save method on updated at attribute"""
         amenity = Amenity()
         original_updated_at = amenity.updated_at
         amenity.save()
         self.assertNotEqual(original_updated_at, amenity.updated_at)
 
     def test_to_dict_method_returns_dict(self):
+        """Test to_dict method"""
         amenity = Amenity()
         amenity_dict = amenity.to_dict()
 
@@ -36,12 +41,14 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(amenity_dict["__class__"], "Amenity")
 
     def test_to_dict_method_contains_attributes(self):
+        """Test to_dict method"""
         amenity = Amenity(name="Pool")
         amenity_dict = amenity.to_dict()
 
         self.assertEqual(amenity_dict["name"], "Pool")
 
     def test_default_values_for_new_instance(self):
+        """Test default object attributes"""
         amenity = Amenity()
         self.assertIsNotNone(amenity.id)
         self.assertIsInstance(amenity.created_at, datetime)
@@ -49,11 +56,13 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(amenity.name, "")
 
     def test_invalid_datetime_string_raises_exception(self):
+        """Test invalid datetime string"""
         with self.assertRaises(ValueError):
             amenity_data = {"created_at": "invalid_datetime_string"}
             amenity = Amenity(**amenity_data)
 
     def test_updated_at_changes_after_save(self):
+        """Test updated at changes after save"""
         amenity = Amenity()
         original_updated_at = amenity.updated_at
         amenity.save()
