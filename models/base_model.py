@@ -23,8 +23,8 @@ class BaseModel():
         # To always initialize other classes's attrbutes not
         # in BaseModel
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
         models.storage.new(self)
         if kwargs:
             for key, value in kwargs.items():
@@ -52,7 +52,7 @@ class BaseModel():
         Updates instance attribute 'updated_at'
         Save the instance to the storage.
         """
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.utcnow()
         models.storage.save()
 
     def to_dict(self):

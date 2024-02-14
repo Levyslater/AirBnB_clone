@@ -104,7 +104,11 @@ class HBNBCommand(cmd.Cmd):
         instances based on the class name (optional)
         Usage: all -optional <class name>
         """
+        # shlex.split() does not contain the command (line[0])
+        # for input __all User__, contents of arguments list
+        # will be ['User']
         arguments = shlex.split(line)
+        # print(f"hhh{arguments}")
         instances = storage.all()
 
         spec_cls = arguments[0] if arguments else None
@@ -167,6 +171,38 @@ class HBNBCommand(cmd.Cmd):
             count = sum(1 for key in instances.keys()
                         if not spec_cls or spec_cls == key.split('.')[0])
             print(count)
+
+    def default(self, line):
+        """Handles unknown command and syntax error"""
+        arguments = line.split('.')
+        # To avoid IndexRangeError when unpacking for split
+        # and one or more than two CLI
+        if len(arguments) != 2:
+            print(f"**Unknown syntax {line}")
+            return False
+        # single line assignment
+        class_name, command_part = arguments
+        arg_method, _ = (command_part.split('(') if '(' in
+                         command_part else (command_part, ''))
+
+        # dictionary of available methods for reference
+        dict_of_methods = {
+            'all': self.do_all,
+            'count': self.do_count,
+            'show': self.do_show,
+            'destroy': self.do_destroy,
+            'update': self.do_update
+        }
+        # check If args exist in already defined dictionary
+        # and execute the corresponding method call
+        # Not need to check if class_name exist as all methods
+        # have this check
+        if arg_method in dict_of_methods:
+            # Pass the entire line (excluding class_name) as arguments
+            return dict_of_methods[arg_method](f"{class_name} {_}")
+        else:
+            print(f"**Unknown Method '{arg_method}' in {class_name}")
+            return False
 
 
 if __name__ == '__main__':
