@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
             objects = storage.all()
             obj_key = f"{arguments[0]}.{arguments[1]}"
             if obj_key not in objects:
-                print("** no instance found ** ")
+                print("** no instance found **")
             else:
                 del objects[obj_key]
                 storage.save()
@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
             objects = storage.all()
             obj_key = f"{arguments[0]}.{arguments[1]}"
             if obj_key not in objects:
-                print("** no instance found ** ")
+                print("** no instance found **")
             elif len(arguments) < 3:
                 print("** attribute name missing **")
             elif len(arguments) < 4:
