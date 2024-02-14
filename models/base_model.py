@@ -20,8 +20,8 @@ class BaseModel():
         These are used to set attributes of the
             instance.
         """
-        #To always initialize other classes's attrbutes not
-        #in BaseModel
+        # To always initialize other classes's attrbutes not
+        # in BaseModel
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
@@ -34,12 +34,6 @@ class BaseModel():
                         setattr(self, key, var)
                     else:
                         setattr(self, key, value)
-        # else:
-        #     # If no kwargs, generate new attributes
-        #     self.id = str(uuid.uuid4())
-        #     self.created_at = datetime.now()
-        #     self.updated_at = datetime.now()
-        #     models.storage.new(self)
 
     def __str__(self):
         """

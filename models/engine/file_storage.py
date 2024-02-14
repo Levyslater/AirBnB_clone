@@ -5,7 +5,6 @@ from models.base_model import BaseModel
 from models.user import User
 
 
-
 class FileStorage:
     """
     A class that stores objects in a JSON file
@@ -24,7 +23,8 @@ class FileStorage:
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)"""
-        instance_dict = {key: instance.to_dict() for key, instance in self.__objects.items()}
+        instance_dict = {key: instance.to_dict()
+                         for key, instance in self.__objects.items()}
         with open(self.__file_path, 'w', encoding="utf-8") as file:
             json.dump(instance_dict, file)
 

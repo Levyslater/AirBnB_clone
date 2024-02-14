@@ -164,8 +164,10 @@ class HBNBCommand(cmd.Cmd):
         if spec_cls and spec_cls not in HBNBCommand.class_reference:
             print("** class doesn't exist **")
         else:
-            count = sum(1 for key in instances.keys() if not spec_cls or spec_cls == key.split('.')[0])
+            count = sum(1 for key in instances.keys()
+                        if not spec_cls or spec_cls == key.split('.')[0])
             print(count)
-    
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
