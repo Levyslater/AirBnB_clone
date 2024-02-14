@@ -152,6 +152,20 @@ class HBNBCommand(cmd.Cmd):
                 setattr(instance, attr_name, attr_value)
                 instance.save()
 
+    def do_count(self, line):
+        """Prints the number of instances based on the class name (optional)
+        Usage: count -optional <class name>
+        """
+        arguments = shlex.split(line)
+        instances = storage.all()
 
+        spec_cls = arguments[0] if arguments else None
+
+        if spec_cls and spec_cls not in HBNBCommand.class_reference:
+            print("** class doesn't exist **")
+        else:
+            count = sum(1 for key in instances.keys() if not spec_cls or spec_cls == key.split('.')[0])
+            print(count)
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
