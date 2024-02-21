@@ -1,0 +1,23 @@
+.filters {
+    color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #363333cc;
+    border-radius: 4px;
+}
+.search-button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    border-radius: 4px;
+    height: 48px;
+    border: none;
+    width: 20%;
+    margin-right: 30px;
+    margin-top: 11px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    opacity: 0.9;
+}
