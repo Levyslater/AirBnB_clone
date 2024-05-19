@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Contain test cases for the Amenity class"""
 import unittest
 from models.amenity import Amenity
